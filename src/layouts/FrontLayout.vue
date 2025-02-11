@@ -16,26 +16,7 @@
 </template>
 
 <script setup>
-import { computed } from "vue";
-import { useRouter } from "vue-router";
-import { useMainStore } from "@/store";
 import BasicHeader from "@/components/BasicHeader.vue";
-
-const router = useRouter();
-const store = useMainStore();
-
-const isLoggedIn = computed(() => store.isLoggedIn);
-const userInfo = computed(() => store.userInfo);
-const currentYear = computed(() => new Date().getFullYear());
-
-const goToLogin = () => router.push("/login");
-const goToUserCenter = () => router.push("/user/center");
-const goToProfile = () => router.push("/user/profile");
-
-const handleLogout = async () => {
-  await store.logout();
-  router.push("/login");
-};
 </script>
 
 <style lang="less" scoped>

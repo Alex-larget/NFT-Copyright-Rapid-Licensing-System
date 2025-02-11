@@ -23,7 +23,6 @@ export const useUserStore = defineStore("user", {
     // 登录
     async login(loginForm) {
       const res = await login(loginForm);
-      console.log(res);
       if (res.code === 200) {
         this.token = res.data.token;
         this.updateUserInfo(res.data.userInfo);

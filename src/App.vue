@@ -5,15 +5,17 @@
   </div>
 </template>
 
-<script>
+<script setup>
 import BasicFooter from "@/components/BasicFooter.vue";
+import { createPinia, setActivePinia } from "pinia";
+import { useRouter } from "vue-router";
+import { useMainStore } from "@/store";
 
-export default {
-  name: "App",
-  components: {
-    BasicFooter,
-  },
-};
+const pinia = createPinia();
+setActivePinia(pinia);
+
+const router = useRouter();
+const store = useMainStore();
 </script>
 
 <style>

@@ -5,7 +5,7 @@ import { watch } from "vue";
 
 const userStore = useUserStore();
 const { updateNavbar } = storeToRefs(userStore);
-
+const { isLoggedIn, userInfo } = storeToRefs(userStore);
 watch(updateNavbar, (newValue) => {
   if (newValue) {
     // 强制重新渲染组件
@@ -14,22 +14,17 @@ watch(updateNavbar, (newValue) => {
   }
 });
 
-import { computed } from "vue";
 import { useRouter } from "vue-router";
-import { useMainStore } from "@/store";
 
 const router = useRouter();
-const store = useMainStore();
 
-const isLoggedIn = computed(() => store.isLoggedIn);
-const userInfo = computed(() => store.userInfo);
 const goToLogin = () => router.push("/login");
 const goToRegister = () => router.push("/register");
 const goToUserCenter = () => router.push("/user/center");
 const goToProfile = () => router.push("/user/profile");
 
 const handleLogout = async () => {
-  await store.logout();
+  await userStore.logout();
   router.push("/login");
 };
 </script>
