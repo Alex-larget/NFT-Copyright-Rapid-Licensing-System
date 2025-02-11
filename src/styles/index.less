@@ -1,0 +1,34 @@
+@import "@/styles/variables.less";
+@import "@/styles/mixins.less";
+
+:root {
+  --primary-color: @primary-color;
+  --success-color: @success-color;
+  --warning-color: @warning-color;
+  --danger-color: @danger-color;
+  --info-color: @info-color;
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: @background-color-base;
+  color: @text-primary;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+
+  .respond-to(md) {
+    padding: 0 40px;
+  }
+} 
