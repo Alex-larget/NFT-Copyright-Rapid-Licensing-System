@@ -38,7 +38,9 @@
       </el-form>
       <div class="register-link">
         <span>还没有账号？</span>
-        <el-button type="primary" link @click="goToRegister">立即注册</el-button>
+        <el-button type="primary" link @click="goToRegister">
+          立即注册
+        </el-button>
       </div>
     </div>
   </div>
@@ -76,14 +78,14 @@ const rules = {
 
 const handleLogin = async () => {
   if (!formRef.value) return;
-  
+
   await formRef.value.validate(async (valid) => {
     if (valid) {
       try {
         loading.value = true;
         await userStore.login(loginForm);
         ElMessage.success("登录成功");
-        
+
         // 跳转到之前的页面或首页
         const redirect = route.query.redirect || "/";
         router.replace(redirect);
@@ -133,4 +135,4 @@ const goToRegister = () => {
     color: #666;
   }
 }
-</style> 
+</style>

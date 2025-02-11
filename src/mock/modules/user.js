@@ -28,18 +28,25 @@ const users = [
 ];
 
 // 登录接口
-Mock.mock("/api/user/login", "post", (options) => {
-  const { username, password } = JSON.parse(options.body);
-  const user = users.find(
-    (u) => u.username === username && u.password === password
-  );
+Mock.mock(/\/api\/user\/login/, "post", (options) => {
+  // 获取请求体数据
+  const body = JSON.parse(options.body);
+  const { username, password } = body;
 
-  if (user) {
+  // 简单的验证逻辑,实际项目中需要替换为真实的验证逻辑
+  if (["admin", "user"].includes(username) && password === "123456") {
     return {
       code: 200,
       data: {
         token: faker.string.uuid(),
-        userInfo: user.userInfo,
+        userInfo: {
+          id: faker.string.uuid(),
+          username: "admin",
+          nickname: "管理员",
+          avatar: faker.image.avatar(),
+          email: faker.internet.email(),
+          bio: faker.lorem.paragraph(),
+        },
       },
       message: "登录成功",
     };

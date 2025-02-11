@@ -1,10 +1,18 @@
 import { defineStore } from "pinia";
 import { login, logout } from "@/api/user";
+import {
+  setToken,
+  removeToken,
+  setUserInfo,
+  getUserInfo,
+  removeUserInfo,
+} from "@/utils/auth";
 
 export const useUserStore = defineStore("user", {
   state: () => ({
     token: localStorage.getItem("token") || "",
-    userInfo: JSON.parse(localStorage.getItem("userInfo") || "null"),
+    userInfo: getUserInfo(),
+    updateNavbar: false,
   }),
 
   getters: {
@@ -13,19 +21,17 @@ export const useUserStore = defineStore("user", {
 
   actions: {
     // 登录
-    async login(data) {
-      try {
-        const res = await login(data);
+    async login(loginForm) {
+      const res = await login(loginForm);
+      console.log(res);
+      if (res.code === 200) {
         this.token = res.data.token;
-        this.userInfo = res.data.userInfo;
-
-        // 保存到本地存储
-        localStorage.setItem("token", this.token);
-        localStorage.setItem("userInfo", JSON.stringify(this.userInfo));
-
+        this.updateUserInfo(res.data.userInfo);
+        setToken(res.data.token);
+        this.updateNavbar = true;
         return res;
-      } catch (error) {
-        throw error;
+      } else {
+        throw new Error(res.message);
       }
     },
 
@@ -34,10 +40,12 @@ export const useUserStore = defineStore("user", {
       try {
         await logout();
         this.clearUserInfo();
+        this.updateNavbar = true;
       } catch (error) {
         console.error("登出失败:", error);
         // 即使接口失败也清除本地信息
         this.clearUserInfo();
+        this.updateNavbar = true;
       }
     },
 
@@ -45,8 +53,8 @@ export const useUserStore = defineStore("user", {
     clearUserInfo() {
       this.token = "";
       this.userInfo = null;
-      localStorage.removeItem("token");
-      localStorage.removeItem("userInfo");
+      removeToken();
+      removeUserInfo();
     },
 
     // 更新用户信息
@@ -55,7 +63,7 @@ export const useUserStore = defineStore("user", {
         ...this.userInfo,
         ...data,
       };
-      localStorage.setItem("userInfo", JSON.stringify(this.userInfo));
+      setUserInfo(this.userInfo);
     },
   },
 });
