@@ -101,7 +101,7 @@ const goToRegister = () => {
 };
 </script>
 
-<style lang="scss" scoped>
+<style lang="less" scoped>
 .login-page {
   min-height: 100vh;
   display: flex;

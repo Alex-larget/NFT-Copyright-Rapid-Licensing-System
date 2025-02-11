@@ -50,13 +50,11 @@
         <el-table-column prop="nftName" label="藏品名称" />
         <el-table-column prop="type" label="交易类型">
           <template #default="{ row }">
-            {{ row.type === 'transfer' ? '转让' : '授权' }}
+            {{ row.type === "transfer" ? "转让" : "授权" }}
           </template>
         </el-table-column>
         <el-table-column prop="price" label="价格" width="120">
-          <template #default="{ row }">
-            ￥{{ row.price }}
-          </template>
+          <template #default="{ row }"> ￥{{ row.price }} </template>
         </el-table-column>
         <el-table-column prop="status" label="状态" width="120">
           <template #default="{ row }">
@@ -76,81 +74,77 @@
         <el-button type="primary" link>查看更多</el-button>
       </div>
       <div class="nft-grid">
-        <NFTCard
-          v-for="nft in myNFTs"
-          :key="nft.id"
-          :nft="nft"
-        />
+        <NFTCard v-for="nft in myNFTs" :key="nft.id" :nft="nft" />
       </div>
     </div>
   </div>
 </template>
 
 <script setup>
-import { ref, onMounted } from 'vue'
-import NFTCard from '@/components/NFTCard.vue'
-import { getUserStats, getRecentTrades, getUserNFTs } from '@/api/userCenter'
-import { ElMessage } from 'element-plus'
+import { ref, onMounted } from "vue";
+import NFTCard from "@/components/NFTCard.vue";
+import { getUserStats, getRecentTrades, getUserNFTs } from "@/api/userCenter";
+import { ElMessage } from "element-plus";
 
 // 数据统计
 const stats = ref({
   nftCount: 0,
   totalAmount: 0,
-  pendingCount: 0
-})
+  pendingCount: 0,
+});
 
 // 最近交易
-const recentTrades = ref([])
+const recentTrades = ref([]);
 
 // 我的藏品
-const myNFTs = ref([])
+const myNFTs = ref([]);
 
 // 加载状态
-const loading = ref(false)
+const loading = ref(false);
 
 // 获取状态样式
 const getStatusType = (status) => {
   const statusMap = {
-    pending: 'warning',
-    success: 'success',
-    failed: 'danger'
-  }
-  return statusMap[status]
-}
+    pending: "warning",
+    success: "success",
+    failed: "danger",
+  };
+  return statusMap[status];
+};
 
 // 获取状态文本
 const getStatusLabel = (status) => {
   const statusMap = {
-    pending: '待支付',
-    success: '已完成',
-    failed: '已取消'
-  }
-  return statusMap[status]
-}
+    pending: "待支付",
+    success: "已完成",
+    failed: "已取消",
+  };
+  return statusMap[status];
+};
 
 // 获取数据
 onMounted(async () => {
   try {
-    loading.value = true
+    loading.value = true;
     const [statsRes, tradesRes, nftsRes] = await Promise.all([
       getUserStats(),
       getRecentTrades(),
-      getUserNFTs()
-    ])
+      getUserNFTs(),
+    ]);
 
-    stats.value = statsRes.data
-    recentTrades.value = tradesRes.data
-    myNFTs.value = nftsRes.data
+    stats.value = statsRes.data;
+    recentTrades.value = tradesRes.data;
+    myNFTs.value = nftsRes.data;
   } catch (error) {
-    ElMessage.error('获取数据失败')
-    console.error('获取用户中心数据失败:', error)
+    ElMessage.error("获取数据失败");
+    console.error("获取用户中心数据失败:", error);
   } finally {
-    loading.value = false
+    loading.value = false;
   }
-})
+});
 </script>
 
-<style lang="scss" scoped>
+<style lang="less" scoped>
 .user-center {
   h2 {
     margin: 0 0 20px;
@@ -170,7 +164,7 @@ onMounted(async () => {
     .stat-number {
       font-size: 24px;
       font-weight: bold;
-      color: $primary-color;
+      color: @primary-color;
     }
   }
 
@@ -197,4 +191,4 @@ onMounted(async () => {
     gap: 20px;
   }
 }
-</style> 
+</style>

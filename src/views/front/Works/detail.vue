@@ -173,7 +173,7 @@ onMounted(() => {
 })
 </script>
 
-<style lang="scss" scoped>
+<style lang="less" scoped>
 .work-detail {
   padding: 40px 0;
 

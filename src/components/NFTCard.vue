@@ -8,10 +8,14 @@
           </div>
         </template>
       </el-image>
-      <div class="nft-type">{{ nft.type === 'original' ? '原始藏品' : '子藏品' }}</div>
+      <div class="nft-type">
+        {{ nft.type === "original" ? "原始藏品" : "子藏品" }}
+      </div>
     </div>
     <div class="nft-info">
-      <h3 class="title">{{ nft.title }}</h3>
+      <h3 class="title">
+        {{ nft.title }}
+      </h3>
       <div class="price">
         <span class="label">价格</span>
         <span class="amount">￥{{ nft.price }}</span>
@@ -21,29 +25,31 @@
         <span class="name">{{ nft.owner.nickname }}</span>
       </div>
       <div class="footer">
-        <span class="type">{{ nft.tradeType === 'transfer' ? '转让' : '授权' }}</span>
-        <el-button type="primary" size="small">立即购买</el-button>
+        <span class="type">{{
+          nft.tradeType === "transfer" ? "转让" : "授权"
+        }}</span>
+        <el-button type="primary" size="small"> 立即购买 </el-button>
       </div>
     </div>
   </div>
 </template>
 
 <script setup>
-import { Picture } from '@element-plus/icons-vue'
-import { useRouter } from 'vue-router'
+import { Picture } from "@element-plus/icons-vue";
+import { useRouter } from "vue-router";
 
 const props = defineProps({
   nft: {
     type: Object,
-    required: true
-  }
-})
+    required: true,
+  },
+});
 
-const router = useRouter()
+const router = useRouter();
 
 const goToDetail = () => {
-  router.push(`/market/${props.nft.id}`)
-}
+  router.push(`/market/${props.nft.id}`);
+};
 </script>
 
 <style lang="less" scoped>
@@ -54,7 +60,7 @@ const goToDetail = () => {
   background: #fff;
   border-radius: 8px;
   overflow: hidden;
-  box-shadow: 0 2px 12px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s;
   cursor: pointer;
 
@@ -77,7 +83,7 @@ const goToDetail = () => {
       top: 12px;
       right: 12px;
       padding: 4px 8px;
-      background: rgba(0,0,0,0.6);
+      background: rgba(0, 0, 0, 0.6);
       color: #fff;
       border-radius: 4px;
       font-size: 12px;
@@ -108,7 +114,7 @@ const goToDetail = () => {
 
     .price {
       margin-bottom: 12px;
-      
+
       .label {
         font-size: 14px;
         color: #666;
@@ -149,4 +155,4 @@ const goToDetail = () => {
     }
   }
 }
-</style> 
+</style>

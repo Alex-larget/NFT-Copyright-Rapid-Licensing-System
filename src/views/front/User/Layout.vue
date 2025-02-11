@@ -39,23 +39,25 @@
 </template>
 
 <script setup>
-import { computed } from 'vue'
-import { useRouter, useRoute } from 'vue-router'
-import { User, Setting } from '@element-plus/icons-vue'
-import { useUserStore } from '@/store/modules/user'
+import { computed } from "vue";
+import { useRouter, useRoute } from "vue-router";
+import { User, Setting } from "@element-plus/icons-vue";
+import { useUserStore } from "@/store/modules/user";
 
-const router = useRouter()
-const route = useRoute()
-const userStore = useUserStore()
+const router = useRouter();
+const route = useRoute();
+const userStore = useUserStore();
 
-const activeMenu = computed(() => route.name?.toLowerCase().replace('user', ''))
+const activeMenu = computed(() =>
+  route.name?.toLowerCase().replace("user", "")
+);
 
 const handleSelect = (key) => {
-  router.push(`/user/${key}`)
-}
+  router.push(`/user/${key}`);
+};
 </script>
 
-<style lang="scss" scoped>
+<style lang="less" scoped>
 .user-layout {
   padding: 20px 0;
 
@@ -96,4 +98,4 @@ const handleSelect = (key) => {
     padding: 20px;
   }
 }
-</style> 
+</style>

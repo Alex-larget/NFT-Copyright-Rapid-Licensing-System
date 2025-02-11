@@ -2,13 +2,13 @@
   <div class="basic-layout">
     <header class="header">
       <nav>
-        <router-link to="/">首页</router-link>
-        <router-link to="/works">作品展示</router-link>
-        <router-link to="/market">交易行</router-link>
-        <router-link to="/nft" v-if="isLoggedIn">NFT中心</router-link>
-        <router-link to="/about">关于我们</router-link>
+        <router-link to="/"> 首页 </router-link>
+        <router-link to="/works"> 作品展示 </router-link>
+        <router-link to="/market"> 交易行 </router-link>
+        <router-link v-if="isLoggedIn" to="/nft"> NFT中心 </router-link>
+        <router-link to="/about"> 关于我们 </router-link>
       </nav>
-      <div class="user-info" v-if="isLoggedIn">
+      <div v-if="isLoggedIn" class="user-info">
         <el-dropdown>
           <span class="user-dropdown">
             {{ userInfo.nickname }}
@@ -26,7 +26,11 @@
       </div>
     </header>
     <main class="main-content">
-      <router-view />
+      <router-view v-slot="{ Component }">
+        <keep-alive :include="['Home', 'Works', 'Market']">
+          <component :is="Component" />
+        </keep-alive>
+      </router-view>
     </main>
     <footer class="footer">
       <p>© 2024 NFT电子藏品平台 版权所有</p>
@@ -53,7 +57,7 @@ export default {
 };
 </script>
 
-<style scoped lang="scss">
+<style scoped lang="less">
 .basic-layout {
   min-height: 100vh;
   display: flex;
@@ -67,16 +71,16 @@ export default {
   align-items: center;
   justify-content: space-between;
   background: #fff;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 
   nav {
     a {
       margin-right: 20px;
       text-decoration: none;
       color: #333;
-      
+
       &.router-link-active {
-        color: #409EFF;
+        color: #409eff;
       }
     }
   }
@@ -92,4 +96,4 @@ export default {
   padding: 20px;
   background: #f7f7f7;
 }
-</style> 
+</style>

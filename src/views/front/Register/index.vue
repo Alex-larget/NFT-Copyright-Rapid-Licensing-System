@@ -65,76 +65,76 @@
 </template>
 
 <script setup>
-import { ref, reactive } from 'vue'
-import { useRouter } from 'vue-router'
-import { User, Lock, Message } from '@element-plus/icons-vue'
-import { ElMessage } from 'element-plus'
-import { register } from '@/api/user'
+import { ref, reactive } from "vue";
+import { useRouter } from "vue-router";
+import { User, Lock, Message } from "@element-plus/icons-vue";
+import { ElMessage } from "element-plus";
+import { register } from "@/api/user";
 
-const router = useRouter()
-const formRef = ref()
-const loading = ref(false)
+const router = useRouter();
+const formRef = ref();
+const loading = ref(false);
 
 const registerForm = reactive({
-  username: '',
-  email: '',
-  password: '',
-  confirmPassword: ''
-})
+  username: "",
+  email: "",
+  password: "",
+  confirmPassword: "",
+});
 
 const rules = {
   username: [
-    { required: true, message: '请输入用户名', trigger: 'blur' },
-    { min: 3, max: 20, message: '长度在 3 到 20 个字符', trigger: 'blur' }
+    { required: true, message: "请输入用户名", trigger: "blur" },
+    { min: 3, max: 20, message: "长度在 3 到 20 个字符", trigger: "blur" },
   ],
   email: [
-    { required: true, message: '请输入邮箱', trigger: 'blur' },
-    { type: 'email', message: '请输入正确的邮箱地址', trigger: 'blur' }
+    { required: true, message: "请输入邮箱", trigger: "blur" },
+    { type: "email", message: "请输入正确的邮箱地址", trigger: "blur" },
   ],
   password: [
-    { required: true, message: '请输入密码', trigger: 'blur' },
-    { min: 6, max: 20, message: '长度在 6 到 20 个字符', trigger: 'blur' }
+    { required: true, message: "请输入密码", trigger: "blur" },
+    { min: 6, max: 20, message: "长度在 6 到 20 个字符", trigger: "blur" },
   ],
   confirmPassword: [
-    { required: true, message: '请确认密码', trigger: 'blur' },
+    { required: true, message: "请确认密码", trigger: "blur" },
     {
       validator: (rule, value, callback) => {
         if (value !== registerForm.password) {
-          callback(new Error('两次输入密码不一致'))
+          callback(new Error("两次输入密码不一致"));
         } else {
-          callback()
+          callback();
         }
       },
-      trigger: 'blur'
-    }
-  ]
-}
+      trigger: "blur",
+    },
+  ],
+};
 
 const handleRegister = async () => {
-  if (!formRef.value) return
-  
+  if (!formRef.value) return;
+
   await formRef.value.validate(async (valid) => {
     if (valid) {
       try {
-        loading.value = true
-        await register(registerForm)
-        ElMessage.success('注册成功，请登录')
-        router.push('/login')
+        loading.value = true;
+        await register(registerForm);
+        ElMessage.success("注册成功，请登录");
+        router.push("/login");
       } catch (error) {
-        ElMessage.error(error.message || '注册失败')
+        ElMessage.error(error.message || "注册失败");
       } finally {
-        loading.value = false
+        loading.value = false;
       }
     }
-  })
-}
+  });
+};
 
 const goToLogin = () => {
-  router.push('/login')
-}
+  router.push("/login");
+};
 </script>
 
-<style lang="scss" scoped>
+<style lang="less" scoped>
 .register-page {
   min-height: 100vh;
   display: flex;
@@ -166,4 +166,4 @@ const goToLogin = () => {
     color: #666;
   }
 }
-</style> 
+</style>

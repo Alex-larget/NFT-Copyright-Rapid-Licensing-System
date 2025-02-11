@@ -5,11 +5,7 @@
       <el-tabs v-model="activeTab">
         <el-tab-pane label="我的藏品" name="myNFTs">
           <div class="nft-grid">
-            <NFTCard
-              v-for="nft in myNFTs"
-              :key="nft.id"
-              :nft="nft"
-            />
+            <NFTCard v-for="nft in myNFTs" :key="nft.id" :nft="nft" />
           </div>
         </el-tab-pane>
         <el-tab-pane label="我的交易" name="myTrades">
@@ -18,7 +14,7 @@
             <el-table-column prop="nftName" label="藏品名称" />
             <el-table-column prop="type" label="交易类型">
               <template #default="{ row }">
-                {{ row.type === 'transfer' ? '转让' : '授权' }}
+                {{ row.type === "transfer" ? "转让" : "授权" }}
               </template>
             </el-table-column>
             <el-table-column prop="price" label="价格" width="120" />
@@ -38,33 +34,33 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
-import NFTCard from '@/components/NFTCard.vue'
+import { ref } from "vue";
+import NFTCard from "@/components/NFTCard.vue";
 
-const activeTab = ref('myNFTs')
-const myNFTs = ref([])
-const myTrades = ref([])
+const activeTab = ref("myNFTs");
+const myNFTs = ref([]);
+const myTrades = ref([]);
 
 const getStatusType = (status) => {
   const statusMap = {
-    pending: 'warning',
-    success: 'success',
-    failed: 'danger'
-  }
-  return statusMap[status]
-}
+    pending: "warning",
+    success: "success",
+    failed: "danger",
+  };
+  return statusMap[status];
+};
 
 const getStatusLabel = (status) => {
   const statusMap = {
-    pending: '待支付',
-    success: '已完成',
-    failed: '已取消'
-  }
-  return statusMap[status]
-}
+    pending: "待支付",
+    success: "已完成",
+    failed: "已取消",
+  };
+  return statusMap[status];
+};
 </script>
 
-<style lang="scss" scoped>
+<style lang="less" scoped>
 .nft-center {
   padding: 20px 0;
 
@@ -81,4 +77,4 @@ const getStatusLabel = (status) => {
     margin: 20px 0;
   }
 }
-</style> 
+</style>

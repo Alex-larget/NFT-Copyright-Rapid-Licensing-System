@@ -203,7 +203,32 @@ onMounted(() => {
 })
 </script>
 
-<style lang="scss" scoped>
+<style lang="less" scoped>
+@import "@/styles/variables.less";
+@import "@/styles/mixins.less";
+
+.market-detail {
+  .section-header {
+    .title {
+      color: @primary-color;
+    }
+  }
+
+  .nft-info {
+    .price-info {
+      .price {
+        color: @primary-color;
+      }
+    }
+  }
+
+  .action-buttons {
+    .buy-button {
+      background-color: @primary-color;
+    }
+  }
+}
+
 .nft-detail {
   padding: 40px 0;
 
@@ -301,7 +326,7 @@ onMounted(() => {
           margin-left: 8px;
           font-size: 24px;
           font-weight: bold;
-          color: $primary-color;
+          color: @primary-color;
         }
       }
 
@@ -352,7 +377,7 @@ onMounted(() => {
       color: #333;
 
       &.price {
-        color: $primary-color;
+        color: @primary-color;
         font-weight: bold;
       }
     }
