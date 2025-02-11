@@ -5,7 +5,6 @@ import { watch } from "vue";
 
 const userStore = useUserStore();
 const { updateNavbar } = storeToRefs(userStore);
-const { isLoggedIn, userInfo } = storeToRefs(userStore);
 
 watch(updateNavbar, (newValue) => {
   if (newValue) {
@@ -14,6 +13,25 @@ watch(updateNavbar, (newValue) => {
     updateNavbar.value = false;
   }
 });
+
+import { computed } from "vue";
+import { useRouter } from "vue-router";
+import { useMainStore } from "@/store";
+
+const router = useRouter();
+const store = useMainStore();
+
+const isLoggedIn = computed(() => store.isLoggedIn);
+const userInfo = computed(() => store.userInfo);
+const goToLogin = () => router.push("/login");
+const goToRegister = () => router.push("/register");
+const goToUserCenter = () => router.push("/user/center");
+const goToProfile = () => router.push("/user/profile");
+
+const handleLogout = async () => {
+  await store.logout();
+  router.push("/login");
+};
 </script>
 
 <template>
@@ -39,16 +57,22 @@ watch(updateNavbar, (newValue) => {
           </span>
           <template #dropdown>
             <el-dropdown-menu>
-              <el-dropdown-item>个人中心</el-dropdown-item>
-              <el-dropdown-item>资料修改</el-dropdown-item>
-              <el-dropdown-item divided> 退出登录 </el-dropdown-item>
+              <el-dropdown-item @click="goToUserCenter">
+                个人中心
+              </el-dropdown-item>
+              <el-dropdown-item @click="goToProfile">
+                资料修改
+              </el-dropdown-item>
+              <el-dropdown-item divided @click="handleLogout">
+                退出登录
+              </el-dropdown-item>
             </el-dropdown-menu>
           </template>
         </el-dropdown>
       </div>
       <div v-else class="auth-buttons">
-        <router-link to="/login"> 登录 </router-link>
-        <router-link to="/register"> 注册 </router-link>
+        <el-button type="primary" @click="goToLogin"> 登录 </el-button>
+        <el-button @click="goToRegister"> 注册 </el-button>
       </div>
     </div>
   </header>
