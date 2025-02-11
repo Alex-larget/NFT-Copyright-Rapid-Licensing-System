@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img" class="iconify iconify--logos" width="31.88" height="32" preserveAspectRatio="xMidYMid meet" viewBox="0 0 256 257">
+<defs>
+<linearGradient id="IconifyId1813088fe1fbc01fb466" x1="-.828%" x2="57.636%" y1="7.652%" y2="78.411%">
+<stop offset="0%" stop-color="#41D1FF"></stop>
+<stop offset="100%" stop-color="#BD34A2"></stop>
+</linearGradient>
+<linearGradient id="IconifyId1813088fe1fbc01fb467" x1="43.376%" x2="50.316%" y1="2.242%" y2="89.03%">
+<stop offset="0%" stop-color="#FFEA83"></stop>
+<stop offset="8.333%" stop-color="#FFDD35"></stop>
+<stop offset="100%" stop-color="#FFA800"></stop>
+</linearGradient>
+</defs>
+<path fill="url(#IconifyId1813088fe1fbc01fb466)" d="M255.153 37.938L134.897 252.976c-2.483 4.44-8.862 4.466-11.382.048L0 37.938l130.77 195.936a8.447 8.447 0 0 0 15.076 0Z"></path>
+<path fill="url(#IconifyId1813088fe1fbc01fb467)" d="M190.022 72.963L127.889.661c-1.485-1.987-4.434-1.952-5.864.068L3.264 231.147a4.558 4.558 0 0 0 5.858 6.484l47.803-15.486 81.104-130.496c1.604-2.573 5.36-2.676 7.02-.175l60.973 97.002Z"></path>
+</svg> 

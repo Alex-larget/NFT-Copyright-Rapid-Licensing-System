@@ -1,22 +1,36 @@
 <template>
   <div id="app">
-    <el-container>
-      <el-header>
-        <h1>我的Vue 3 + Element Plus 应用</h1>
-      </el-header>
-      <el-main>
-        <router-view></router-view>
-      </el-main>
-    </el-container>
+    <el-config-provider>
+      <Navbar />
+      <router-view v-slot="{ Component }">
+        <transition name="fade" mode="out-in">
+          <component :is="Component" />
+        </transition>
+      </router-view>
+    </el-config-provider>
   </div>
 </template>
 
 <script setup lang="ts">
-// 可以在这里添加应用级别的逻辑
+import '@/mock/nft'
+import Navbar from '@/components/Navbar.vue'
+// 可以在这里添加全局配置
 </script>
 
 <style>
 #app {
-  font-family: Arial, sans-serif;
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: #2c3e50;
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.3s ease;
+}
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
 }
 </style> 
