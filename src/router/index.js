@@ -23,12 +23,6 @@ const routes = [
         component: () => import("@/views/front/Market/index.vue"),
       },
       {
-        path: "nft",
-        name: "NFTCenter",
-        component: () => import("@/views/front/NFTCenter/index.vue"),
-        meta: { requiresAuth: true },
-      },
-      {
         path: "about",
         name: "About",
         component: () => import("@/views/front/About/index.vue"),

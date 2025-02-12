@@ -39,7 +39,6 @@ const handleLogout = async () => {
         <router-link to="/"> 首页 </router-link>
         <router-link to="/works"> 作品展示 </router-link>
         <router-link to="/market"> 交易行 </router-link>
-        <router-link v-if="isLoggedIn" to="/nft"> NFT中心 </router-link>
         <router-link to="/about"> 关于我们 </router-link>
       </nav>
       <div v-if="isLoggedIn" class="user-info">
