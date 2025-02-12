@@ -2,6 +2,7 @@
 import { storeToRefs } from "pinia";
 import { useUserStore } from "@/store/modules/user";
 import { watch } from "vue";
+import { Setting } from "@element-plus/icons-vue";
 
 const userStore = useUserStore();
 const { updateNavbar } = storeToRefs(userStore);
@@ -22,6 +23,9 @@ const goToLogin = () => router.push("/login");
 const goToRegister = () => router.push("/register");
 const goToUserCenter = () => router.push("/user/center");
 const goToProfile = () => router.push("/user/profile");
+const goToAdmin = () => {
+  router.push("/admin/dashboard");
+};
 
 const handleLogout = async () => {
   await userStore.logout();
@@ -42,6 +46,10 @@ const handleLogout = async () => {
         <router-link to="/about"> 关于我们 </router-link>
       </nav>
       <div v-if="isLoggedIn" class="user-info">
+        <el-button type="primary" style="margin-right: 20px" @click="goToAdmin">
+          <el-icon><Setting /></el-icon>
+          管理后台
+        </el-button>
         <el-dropdown>
           <span class="user-dropdown">
             <div class="user-area">
