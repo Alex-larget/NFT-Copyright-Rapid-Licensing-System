@@ -1,7 +1,5 @@
 <template>
   <div class="admin-menu">
-    <h1>菜单管理</h1>
-
     <!-- 操作按钮 -->
     <div class="operation-buttons">
       <el-button type="primary" @click="openAddMenuDialog">

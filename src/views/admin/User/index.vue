@@ -1,7 +1,5 @@
 <template>
   <div class="admin-user">
-    <h1>用户管理</h1>
-
     <!-- 搜索和筛选区域 -->
     <el-card class="search-filter">
       <el-form :inline="true" :model="searchForm">

@@ -51,6 +51,7 @@ const routes = [
     path: "/admin",
     component: AdminLayout,
     meta: { requiresAuth: true, requiresAdmin: true },
+    redirect: "/admin/dashboard",
     children: [
       {
         path: "dashboard",

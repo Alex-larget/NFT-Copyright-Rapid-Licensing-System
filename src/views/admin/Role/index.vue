@@ -1,7 +1,5 @@
 <template>
   <div class="admin-role">
-    <h1>角色管理</h1>
-
     <!-- 操作按钮 -->
     <div class="operation-buttons">
       <el-button type="primary" @click="openAddRoleDialog">

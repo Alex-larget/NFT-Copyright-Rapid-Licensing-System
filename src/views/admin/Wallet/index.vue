@@ -1,7 +1,5 @@
 <template>
   <div class="admin-wallet">
-    <h1>电子钱包管理</h1>
-
     <!-- 钱包总览 -->
     <el-row :gutter="20" class="wallet-overview">
       <el-col :span="8">

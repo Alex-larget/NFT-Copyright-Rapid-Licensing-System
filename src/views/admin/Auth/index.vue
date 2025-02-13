@@ -1,7 +1,5 @@
 <template>
   <div class="admin-auth">
-    <h1>认证审核</h1>
-
     <!-- 搜索和筛选区域 -->
     <el-card class="search-filter">
       <el-form :inline="true" :model="searchForm">

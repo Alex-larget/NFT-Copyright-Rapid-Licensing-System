@@ -1,7 +1,5 @@
 <template>
   <div class="admin-collection">
-    <h1>藏品管理</h1>
-
     <!-- 搜索和筛选区域 -->
     <el-card class="search-filter">
       <el-form :inline="true" :model="searchForm">

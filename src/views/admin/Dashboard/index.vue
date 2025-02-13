@@ -1,7 +1,5 @@
 <template>
   <div class="admin-dashboard">
-    <h1>仪表盘</h1>
-
     <!-- 数据概览卡片 -->
     <el-row :gutter="20" class="overview-cards">
       <el-col :span="6">

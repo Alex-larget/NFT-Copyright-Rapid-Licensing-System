@@ -1,7 +1,5 @@
 <template>
   <div class="admin-trade">
-    <h1>交易管理</h1>
-
     <!-- 搜索和筛选区域 -->
     <el-card class="search-filter">
       <el-form :inline="true" :model="searchForm">
